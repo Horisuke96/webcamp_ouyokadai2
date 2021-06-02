@@ -1,12 +1,11 @@
 class ApplicationController < ActionController::Base
-
 	before_action :configure_permitted_parameters, if: :devise_controller?
-
+  helper_method :current_user, :logged_in?
 
 
   protected
   def after_sign_in_path_for(resource)
-    users_path
+    user_path(@user)
   end
 
   def after_sign_out_path_for(resource)
